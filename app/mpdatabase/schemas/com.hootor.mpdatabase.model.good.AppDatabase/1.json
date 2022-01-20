@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5a32a4383c8442bbc57d8d263c5a58ce",
+    "entities": [
+      {
+        "tableName": "goods",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ref` TEXT NOT NULL, `parent` TEXT NOT NULL, `title` TEXT NOT NULL, `isGroup` INTEGER NOT NULL, `typeNomenclature` TEXT NOT NULL, `flagRemoval` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ref",
+            "columnName": "ref",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isGroup",
+            "columnName": "isGroup",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeNomenclature",
+            "columnName": "typeNomenclature",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flagRemoval",
+            "columnName": "flagRemoval",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_goods_ref",
+            "unique": true,
+            "columnNames": [
+              "ref"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_goods_ref` ON `${TABLE_NAME}` (`ref`)"
+          },
+          {
+            "name": "index_goods_parent",
+            "unique": false,
+            "columnNames": [
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_goods_parent` ON `${TABLE_NAME}` (`parent`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5a32a4383c8442bbc57d8d263c5a58ce')"
+    ]
+  }
+}
