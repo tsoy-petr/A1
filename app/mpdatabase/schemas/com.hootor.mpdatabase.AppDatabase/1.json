@@ -1,0 +1,376 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "f0eb7d5b678ba53235b6c6607820fb97",
+    "entities": [
+      {
+        "tableName": "goods",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ref` TEXT NOT NULL, `parent` TEXT NOT NULL, `title` TEXT NOT NULL, `isGroup` INTEGER NOT NULL, `typeNomenclature` TEXT NOT NULL, `flagRemoval` INTEGER NOT NULL, `article` TEXT NOT NULL, PRIMARY KEY(`ref`))",
+        "fields": [
+          {
+            "fieldPath": "ref",
+            "columnName": "ref",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isGroup",
+            "columnName": "isGroup",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeNomenclature",
+            "columnName": "typeNomenclature",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flagRemoval",
+            "columnName": "flagRemoval",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "article",
+            "columnName": "article",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ref"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_goods_ref",
+            "unique": true,
+            "columnNames": [
+              "ref"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_goods_ref` ON `${TABLE_NAME}` (`ref`)"
+          },
+          {
+            "name": "index_goods_ref_parent",
+            "unique": true,
+            "columnNames": [
+              "ref",
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_goods_ref_parent` ON `${TABLE_NAME}` (`ref`, `parent`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "units_good",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ref` TEXT NOT NULL, `title` TEXT NOT NULL, `parent` TEXT NOT NULL, `flagRemoval` INTEGER NOT NULL, `numerator` INTEGER NOT NULL, `denominator` INTEGER NOT NULL, `modePackaging` TEXT NOT NULL, `wight` REAL NOT NULL, PRIMARY KEY(`ref`), FOREIGN KEY(`parent`) REFERENCES `goods`(`ref`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "ref",
+            "columnName": "ref",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flagRemoval",
+            "columnName": "flagRemoval",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numerator",
+            "columnName": "numerator",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "denominator",
+            "columnName": "denominator",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modePackaging",
+            "columnName": "modePackaging",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wight",
+            "columnName": "wight",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ref"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_units_good_ref",
+            "unique": true,
+            "columnNames": [
+              "ref"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_units_good_ref` ON `${TABLE_NAME}` (`ref`)"
+          },
+          {
+            "name": "index_units_good_parent",
+            "unique": false,
+            "columnNames": [
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_units_good_parent` ON `${TABLE_NAME}` (`parent`)"
+          },
+          {
+            "name": "index_units_good_ref_parent",
+            "unique": true,
+            "columnNames": [
+              "ref",
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_units_good_ref_parent` ON `${TABLE_NAME}` (`ref`, `parent`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "goods",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "parent"
+            ],
+            "referencedColumns": [
+              "ref"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "units_type_good",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ref` TEXT NOT NULL, `title` TEXT NOT NULL, `parent` TEXT NOT NULL, `flagRemoval` INTEGER NOT NULL, `numerator` INTEGER NOT NULL, `denominator` INTEGER NOT NULL, `modePackaging` TEXT NOT NULL, `wight` REAL NOT NULL, PRIMARY KEY(`ref`), FOREIGN KEY(`parent`) REFERENCES `type_good`(`ref`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "ref",
+            "columnName": "ref",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "flagRemoval",
+            "columnName": "flagRemoval",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numerator",
+            "columnName": "numerator",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "denominator",
+            "columnName": "denominator",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modePackaging",
+            "columnName": "modePackaging",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wight",
+            "columnName": "wight",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ref"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_units_type_good_ref",
+            "unique": true,
+            "columnNames": [
+              "ref"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_units_type_good_ref` ON `${TABLE_NAME}` (`ref`)"
+          },
+          {
+            "name": "index_units_type_good_parent",
+            "unique": false,
+            "columnNames": [
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_units_type_good_parent` ON `${TABLE_NAME}` (`parent`)"
+          },
+          {
+            "name": "index_units_type_good_ref_parent",
+            "unique": true,
+            "columnNames": [
+              "ref",
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_units_type_good_ref_parent` ON `${TABLE_NAME}` (`ref`, `parent`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "type_good",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "parent"
+            ],
+            "referencedColumns": [
+              "ref"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "characteristic_good",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ref` TEXT NOT NULL, `parent` TEXT NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`ref`), FOREIGN KEY(`parent`) REFERENCES `goods`(`ref`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "ref",
+            "columnName": "ref",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parent",
+            "columnName": "parent",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ref"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_characteristic_good_parent",
+            "unique": false,
+            "columnNames": [
+              "parent"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_characteristic_good_parent` ON `${TABLE_NAME}` (`parent`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "goods",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "parent"
+            ],
+            "referencedColumns": [
+              "ref"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "type_good",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ref` TEXT NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`ref`))",
+        "fields": [
+          {
+            "fieldPath": "ref",
+            "columnName": "ref",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "ref"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f0eb7d5b678ba53235b6c6607820fb97')"
+    ]
+  }
+}

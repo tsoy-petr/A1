@@ -9,15 +9,15 @@ import androidx.room.PrimaryKey
     tableName = "goods",
     indices = [
         Index("ref", unique = true),
-        Index("parent", unique = false)
+        Index("ref", "parent", unique = true)
     ]
 )
 data class GoodDbEntity(
-    @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) val id: Long,
-    @ColumnInfo(name="ref") val ref: String,
+    @ColumnInfo(name="ref") @PrimaryKey val ref: String,
     @ColumnInfo(name="parent") val parent: String,
     @ColumnInfo(name="title") val title: String,
     @ColumnInfo(name="isGroup") val isGroup: Boolean,
-    @ColumnInfo(name="typeNomenclature") val typeNomenclature: String,
-    @ColumnInfo(name="flagRemoval") val flagRemoval: Boolean
+    @ColumnInfo(name="typeNomenclature") val typeNomenclature: String = "",
+    @ColumnInfo(name="flagRemoval") val flagRemoval: Boolean,
+    @ColumnInfo(name="article") val article: String = ""
 )
